@@ -27,7 +27,7 @@ body {
 
 .image-visible {
   display: block;
-  animation: fadeVisibily 500ms;
+  /* animation: fadeVisibily 500ms; */
 }
 
 .image img {

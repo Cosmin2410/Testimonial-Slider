@@ -1,35 +1,67 @@
 let nextBtn = document.querySelector('.next-button');
 let prevBtn = document.querySelector('.prev-button');
-let slidePosition = 0;
-let slides = document.querySelectorAll('.image');
-const totalSlides = slides.length;
 
 nextBtn.addEventListener('click', moveToNextSlide);
 prevBtn.addEventListener('click', moveToPrevSlide);
 
-function updateSlidePosition() {
-  for (let slide of slides) {
+//Images changing when button press
+
+let slidePositionImages = 0;
+let slidesImages = document.querySelectorAll('.image');
+const totalSlidesImages = slidesImages.length;
+
+function updateSlidePositionImages() {
+  for (let slide of slidesImages) {
     slide.classList.remove('image-visible');
   }
-  slides[slidePosition].classList.add('image-visible');
+  slidesImages[slidePositionImages].classList.add('image-visible');
 }
 
-function moveToNextSlide() {
-  if (slidePosition === totalSlides - 1) {
-    slidePosition = 0;
-  } else {
-    slidePosition++;
+//Text changing when text press
+
+let slidePositionText = 0;
+let slidesText = document.querySelectorAll('.review');
+const totalSlidesText = slidesText.length;
+
+function updateSlidePositionText() {
+  for (let slide of slidesText) {
+    slide.classList.remove('review-visible');
   }
 
-  updateSlidePosition();
+  slidesText[slidePositionText].classList.add('review-visible');
+}
+// Buttons changing the image and text when pressed
+
+function moveToNextSlide() {
+  if (slidePositionImages === totalSlidesImages - 1) {
+    slidePositionImages = 0;
+  } else {
+    slidePositionImages++;
+  }
+
+  if (slidePositionText === totalSlidesText - 1) {
+    slidePositionText = 0;
+  } else {
+    slidePositionText++;
+  }
+
+  updateSlidePositionText();
+  updateSlidePositionImages();
 }
 
 function moveToPrevSlide() {
-  if (slidePosition === 0) {
-    slidePosition = totalSlides - 1;
+  if (slidePositionImages === 0) {
+    slidePositionImages = totalSlidesImages - 1;
   } else {
-    slidePosition--;
+    slidePositionImages--;
   }
 
-  updateSlidePosition();
+  if (slidePositionText === 0) {
+    slidePositionText = totalSlidesText - 1;
+  } else {
+    slidePositionText--;
+  }
+
+  updateSlidePositionText();
+  updateSlidePositionImages();
 }
